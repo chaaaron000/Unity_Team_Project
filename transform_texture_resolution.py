@@ -2,7 +2,7 @@ from PIL import Image
 import os
 
 # 입력 폴더 경로
-input_folder = "C:/Users/SangHyeon/Unity Project/Room_Escape_Project/Assets/AtmosphericHouse/Textures"
+input_folder = "D:/Unity/Unity_Team_Project/Assets/TerrainTexturesPackFree/TerrainTextures"
 
 # 출력 폴더 경로
 output_folder = "/path/to/output/folder"
