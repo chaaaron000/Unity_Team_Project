@@ -30,7 +30,6 @@ public class CustomSimplePlayerController : MonoBehaviour
         Cursor.visible = false;
 
         originalPosition = playerCamera.transform.localPosition;
-
     }
 
     void Update()
@@ -60,7 +59,7 @@ public class CustomSimplePlayerController : MonoBehaviour
             isRunning = false;
         }
 
-        Debug.Log(playerCamera.transform.localPosition);
+        // Debug.Log(playerCamera.transform.localPosition);
 
         float curSpeedX = canMove ? (isRunning ? runSpeed : walkSpeed) * Input.GetAxis("Vertical") : 0;
         float curSpeedY = canMove ? (isRunning ? runSpeed : walkSpeed) * Input.GetAxis("Horizontal") : 0;
