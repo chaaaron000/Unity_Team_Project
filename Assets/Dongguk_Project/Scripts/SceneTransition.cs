@@ -28,7 +28,7 @@ public class SceneTransition : MonoBehaviour
     {
 
         // Debug.Log(Player.transform.position);
-        // Debug.Log(timer);
+        Debug.Log(timer);
 
         if (hasEntered())
         {
