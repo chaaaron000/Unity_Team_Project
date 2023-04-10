@@ -59,7 +59,7 @@ public class CustomSimplePlayerController : MonoBehaviour
             isRunning = false;
         }
 
-        // Debug.Log(playerCamera.transform.localPosition);
+        // Debug.Log(this.transform.position);
 
         float curSpeedX = canMove ? (isRunning ? runSpeed : walkSpeed) * Input.GetAxis("Vertical") : 0;
         float curSpeedY = canMove ? (isRunning ? runSpeed : walkSpeed) * Input.GetAxis("Horizontal") : 0;

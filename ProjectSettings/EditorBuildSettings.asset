@@ -8,4 +8,10 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/OutdoorsScene.unity
     guid: 8124e5870f4fd4c779e7a5f994e84ad1
+  - enabled: 1
+    path: Assets/Dongguk_Project/Scenes/House_clean_day 1.unity
+    guid: 78f6b1eba43542846b2684f674e668dd
+  - enabled: 1
+    path: Assets/Dongguk_Project/Scenes/House_worn_night 1.unity
+    guid: 093a4b6bd71cb484192a498c181e2ca9
   m_configObjects: {}
