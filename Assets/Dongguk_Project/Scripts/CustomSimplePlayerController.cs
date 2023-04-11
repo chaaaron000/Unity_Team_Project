@@ -11,7 +11,7 @@ public class CustomSimplePlayerController : MonoBehaviour
     public float runSpeed = 4.0f;
     public float lookSpeed = 2.0f;
     public float lookXLimit = 90.0f;
-    public float gravity = 150.0f;
+    public float gravity = 1500.0f;
 
     CharacterController characterController;
     Vector3 moveDirection = Vector3.zero;
