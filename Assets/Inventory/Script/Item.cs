@@ -11,7 +11,7 @@ public enum ItemType{
 [System.Serializable]
 public class Item 
 {
-    public ItemType ItemType;
+    public ItemType itemType;
     public string itemName;
     public Sprite itemImage;
 
