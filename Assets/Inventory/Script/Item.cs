@@ -3,8 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public enum ItemType{
-    Equipment,
-    Consumables,
+    Key,
+    FlashLight,
     ETC
 }
 
@@ -18,4 +18,5 @@ public class Item
     public bool Use(){
         return false;
     }
+    
 }
