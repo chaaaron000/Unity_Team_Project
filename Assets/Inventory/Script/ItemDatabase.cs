@@ -4,14 +4,24 @@ using UnityEngine;
 
 public class ItemDatabase : MonoBehaviour
 {
-  
-  public List<GameObject> item = new List<GameObject>();
+    public ItemOnOff itemOnOff;
+    public List<GameObject> item = new List<GameObject>();
 
-  public void AddData(GameObject gameObject){
-    item.Add(gameObject);
-    Debug.Log(gameObject.name +"had deployed");
-  }
-  
+    public void AddData(GameObject gameObject)
+    {
+      itemOnOff = GameObject.Find("ItemOnOff").GetComponent<ItemOnOff>(); 
+      Debug.Log("Adding new item: " + gameObject.name);
+      item.Add(gameObject);
+      itemOnOff.SetItemOn(gameObject.name);
+      // GameObject의 이름과 "Image"를 결합하여 해당 게임 오브젝트에서 ItemOnOff 컴포넌트 찾기
+      //string name = gameObject.name + "Image";
+      //Debug.Log(name);
+      //itemOnOff.check();
+      
+    }
+
+    public void Check()
+    {
+        Debug.Log("Item count: " + item.Count);
+    }
 }
-
-
