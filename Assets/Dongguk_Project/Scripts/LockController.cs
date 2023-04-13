@@ -4,9 +4,8 @@ using UnityEngine.UI;
 public class LockController : MonoBehaviour
 {
     public GameObject lockUI;
-    public GameObject explainText;
+    public GameObject explainUI;
     public InputField passwordInput;
-    
     public string correctPassword = "108";
 
     private bool isLocked = true;
@@ -16,8 +15,12 @@ public class LockController : MonoBehaviour
     {
         // 초기화
         lockUI.SetActive(false);
-        explainText.SetActive(false);
+        explainUI.SetActive(false);
+        
         passwordInput.gameObject.SetActive(false);
+
+        // Enter 키를 눌렀을 때 OnSubmitButtonClicked() 함수 호출
+        passwordInput.onEndEdit.AddListener(delegate { OnSubmitButtonClicked(); });
     }
 
     void ObjectClicked()
@@ -32,7 +35,7 @@ public class LockController : MonoBehaviour
     {
         isLocked = true;
         lockUI.SetActive(true);
-        explainText.SetActive(true);
+        explainUI.SetActive(true);
         Time.timeScale = 0f; // 게임 일시 정지
         passwordInput.gameObject.SetActive(true);
         passwordInput.ActivateInputField(); // 입력 필드 활성화
@@ -44,10 +47,10 @@ public class LockController : MonoBehaviour
         {
             isLocked = false;
             lockUI.SetActive(false);
-            explainText.SetActive(false);
+            explainUI.SetActive(false);
             passwordInput.gameObject.SetActive(false);
             Time.timeScale = 1f; // 게임 재개
-            Destroy(gameObject);
+            Destroy(gameObject); // 자물쇠 게임오브젝트 파괴
         }
         else
         {
@@ -64,7 +67,7 @@ public class LockController : MonoBehaviour
     public void OnCancelButtonClicked()
     {
         lockUI.SetActive(false);
-        explainText.SetActive(false);
+        explainUI.SetActive(false);
         passwordInput.gameObject.SetActive(false);
         Time.timeScale = 1f; // 게임 재개
         isShowingPasswordUI = false;
