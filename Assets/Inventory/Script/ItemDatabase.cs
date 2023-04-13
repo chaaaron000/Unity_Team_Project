@@ -15,8 +15,8 @@ public class ItemDatabase : MonoBehaviour
       Check();
       itemOnOff.SetItemOn(gameObject.name);
       // GameObject의 이름과 "Image"를 결합하여 해당 게임 오브젝트에서 ItemOnOff 컴포넌트 찾기
-      //string name = gameObject.name + "Image";
-      //Debug.Log(name);
+      // string name = gameObject.name + "Image";
+      // Debug.Log(name);
       
       
     }

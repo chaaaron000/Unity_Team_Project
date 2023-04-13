@@ -14,7 +14,8 @@ GameObject:
   - component: {fileID: 4233516193148487714}
   - component: {fileID: 4233516193148487715}
   - component: {fileID: 4233516193148487716}
-  - component: {fileID: 8049133312741660730}
+  - component: {fileID: 604304178}
+  - component: {fileID: 604304176}
   m_Layer: 0
   m_Name: Prism
   m_TagString: Untagged
@@ -308,7 +309,7 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: -1
   m_Mesh: {fileID: 0}
---- !u!65 &8049133312741660730
+--- !u!65 &604304178
 BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -316,8 +317,20 @@ BoxCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4233516193148487717}
   m_Material: {fileID: 0}
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Size: {x: 13.046997, y: 17.49562, z: 11.790665}
+  m_Center: {x: -6.5234985, y: 8.74781, z: 5.8953247}
+--- !u!114 &604304176
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4233516193148487717}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a895092042cdb564d8008e0722e8e38b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

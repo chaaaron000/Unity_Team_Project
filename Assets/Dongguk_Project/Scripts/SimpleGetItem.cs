@@ -4,15 +4,29 @@ using UnityEngine;
 
 public class SimpleGetItem : MonoBehaviour
 {
-    public ItemDatabase itemDatabase;
+    private ItemDatabase itemDatabase;
+
+    void Start()
+    {
+        GameObject playerObject = GameObject.FindGameObjectWithTag("Player");
+        if (playerObject == null)
+        {
+            Debug.LogError("playerObject is not assigned.");
+            return;
+        }
+
+        itemDatabase = playerObject.GetComponent<ItemDatabase>();
+    }
 
     void ObjectClicked()
     {   
-        Debug.Log("this is ObjectClicked");
-        Debug.Log(gameObject.name);
-        itemDatabase = GameObject.Find(gameObject.name).GetComponent<ItemDatabase>();
+        if (itemDatabase == null)
+        {
+            Debug.LogError("ItemDatabase is not assigned.");
+            return;
+        }
         
-        itemDatabase.AddData(this.gameObject);
+        itemDatabase.AddData(gameObject);
         Debug.Log("AddData를 실행했어요");
         Destroy(gameObject);
     }
