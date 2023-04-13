@@ -40,7 +40,8 @@ public class CustomSimplePlayerUse : MonoBehaviour
         {
             if (hit.collider.gameObject.GetComponent<SimpleOpenClose>())
             {
-               // Debug.Log("Object with SimpleOpenClose script found");
+                
+                //Debug.Log("Object with SimpleOpenClose script found");
                 hit.collider.gameObject.BroadcastMessage("ObjectClicked");
             }
             // else
@@ -51,9 +52,16 @@ public class CustomSimplePlayerUse : MonoBehaviour
 
             if (hit.collider.gameObject.GetComponent<DoorOpenClose>())
             {
-               // Debug.Log("Object with SimpleOpenClose script found");
+                Debug.Log("Object with DoorOpenClose script found");
                 hit.collider.gameObject.BroadcastMessage("ObjectClicked");
             }
+
+            if (hit.collider.gameObject.GetComponent<LockController>())
+            {
+                Debug.Log("Object with LockController script found");
+                hit.collider.gameObject.BroadcastMessage("ObjectClicked");
+            }
+            
             
             if (hit.collider.gameObject.GetComponent<SimpleGetItem>()){
                 Debug.Log("helell");

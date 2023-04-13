@@ -86,13 +86,14 @@ public class DoorOpenClose : MonoBehaviour
             if (myNormalizedTime >= 1.0)
             {
                 if (objectOpen == true)
-                {
+                {   Debug.Log("OK~Door Open~");
                     myAnimator.Play("Close", 0, 0.0f);
                     objectOpen = false;
                 }
 
                 else
                 {
+                    Debug.Log("OK~Door closed~");
                     myAnimator.Play("Open", 0, 0.0f);
                     objectOpen = true;
                 }
