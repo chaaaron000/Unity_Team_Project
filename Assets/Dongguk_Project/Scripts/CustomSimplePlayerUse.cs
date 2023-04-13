@@ -62,11 +62,8 @@ public class CustomSimplePlayerUse : MonoBehaviour
                 hit.collider.gameObject.BroadcastMessage("ObjectClicked");
             }
             
-            
             if (hit.collider.gameObject.GetComponent<SimpleGetItem>()){
-                Debug.Log("helell");
                 hit.collider.gameObject.BroadcastMessage("ObjectClicked");
-                Debug.Log("helell!!!!!");
             }
 
            // Debug.DrawRay(mainCamera.transform.position, mainCamera.transform.TransformDirection(Vector3.forward) * hit.distance, Color.yellow);

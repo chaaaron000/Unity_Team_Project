@@ -14,7 +14,6 @@ public class SimpleGetItem : MonoBehaviour
             Debug.LogError("playerObject is not assigned.");
             return;
         }
-
         itemDatabase = playerObject.GetComponent<ItemDatabase>();
     }
 
@@ -25,9 +24,9 @@ public class SimpleGetItem : MonoBehaviour
             Debug.LogError("ItemDatabase is not assigned.");
             return;
         }
-        
-        itemDatabase.AddData(gameObject);
-        Debug.Log("AddData를 실행했어요");
+
+        itemDatabase.AddData(gameObject.name);
+        // Debug.Log("AddData를 실행했어요");
         Destroy(gameObject);
     }
 }

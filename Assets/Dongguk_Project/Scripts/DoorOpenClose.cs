@@ -21,6 +21,8 @@ public class DoorOpenClose : MonoBehaviour
     }
     public DoorType doorType;
 
+    private ItemDatabase itemDatabase;
+
 
     // Open or close animator state in start depending on selection.
     // Additional object with animator. For example another door when double doors. 
@@ -50,6 +52,14 @@ public class DoorOpenClose : MonoBehaviour
             {
                 hasAdditional = false;
             }
+
+        GameObject playerObject = GameObject.FindGameObjectWithTag("Player");
+        if (playerObject == null)
+        {
+            Debug.LogError("playerObject is not assigned.");
+            return;
+        }
+        itemDatabase = playerObject.GetComponent<ItemDatabase>();
     }
 
     // Player clicks object. Method called from SimplePlayerUse script.
@@ -65,6 +75,11 @@ public class DoorOpenClose : MonoBehaviour
                     return;
                 case DoorType.KeyDoor:
                     Debug.Log("키로 여는 문입니다.");
+                    if (!CheckForKey())
+                    {
+                        Debug.Log("키가 없습니다.");
+                        return;
+                    }
                     break;
                 case DoorType.QuizDoor:
                     Debug.Log("퀴즈로 여는 문입니다.");
@@ -135,6 +150,17 @@ public class DoorOpenClose : MonoBehaviour
 
         }
 
+    }
+
+    bool CheckForKey()
+    {
+        Debug.Log(itemDatabase.item);
+        foreach(string obj in itemDatabase.item) {
+            if(obj == "Key") {
+                return true;
+            }
+        }   
+        return false;
     }
 
 }

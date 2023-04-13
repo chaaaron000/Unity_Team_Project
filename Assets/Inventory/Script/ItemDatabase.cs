@@ -5,15 +5,15 @@ using UnityEngine;
 public class ItemDatabase : MonoBehaviour
 {
     public ItemOnOff itemOnOff;
-    public List<GameObject> item = new List<GameObject>();
+    public List<string> item = new List<string>();
 
-    public void AddData(GameObject gameObject)
+    public void AddData(string objectName)
     {
-      itemOnOff = GameObject.Find("ItemOnOff").GetComponent<ItemOnOff>(); 
-      Debug.Log("Adding new item: " + gameObject.name);
-      item.Add(gameObject);
+      // Debug.Log(gameObject.name);
+      item.Add(objectName);
+      // itemOnOff = GameObject.Find("ItemOnOff").GetComponent<ItemOnOff>();
+      // itemOnOff.SetItemOn(gameObject.name);
       Check();
-      itemOnOff.SetItemOn(gameObject.name);
       // GameObject의 이름과 "Image"를 결합하여 해당 게임 오브젝트에서 ItemOnOff 컴포넌트 찾기
       // string name = gameObject.name + "Image";
       // Debug.Log(name);
@@ -23,6 +23,6 @@ public class ItemDatabase : MonoBehaviour
 
     public void Check()
     {
-        Debug.Log("Item count: " + item.Count);
+      // Debug.Log("Item count: " + item.Count);
     }
 }
