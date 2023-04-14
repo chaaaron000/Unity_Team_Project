@@ -11,9 +11,11 @@ public class CustomSimplePlayerUse : MonoBehaviour
     public KeyCode OpenCloseGetItem;
     public KeyCode Flashlight;
 
+    private ItemDatabase itemDatabase;
+
     void Start()
     {
-
+        itemDatabase = gameObject.GetComponent<ItemDatabase>();
     }
 
     void Update()
@@ -25,10 +27,17 @@ public class CustomSimplePlayerUse : MonoBehaviour
 
         if (Input.GetKeyDown(Flashlight)) // Toggle flashlight
         {
-            if (flashlight.activeSelf )
-                  flashlight.SetActive(false);
+            if (CheckForFlashlight())
+            {
+                if (flashlight.activeSelf )
+                    flashlight.SetActive(false);
+                else
+                    flashlight.SetActive(true);
+            }
             else
-                 flashlight.SetActive(true);
+            {
+                Debug.Log("손전등이 없습니다.");
+            }
         }
     }
     
@@ -77,6 +86,16 @@ public class CustomSimplePlayerUse : MonoBehaviour
 
         }
 
+    }
+
+    bool CheckForFlashlight()
+    {
+        foreach(string obj in itemDatabase.item) {
+            if(obj == "FlashLight") {
+                return true;
+            }
+        }   
+        return false;
     }
 
 }
