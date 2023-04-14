@@ -9,9 +9,9 @@
 /[Bb]uilds/
 /[Ll]ogs/
 /[Uu]ser[Ss]ettings/
-/Assets/Downloaded_Assets/AtmosphericHouse/HDRP/AtomsphericHouseHDRP.unitypackage
-/Assets/Downloaded_Assets/AtmosphericHouse/URP/
-/Assets/Downloaded_Assets/AtmosphericHouse/Textures/
+/Assets/AtmosphericHouse/HDRP/AtomsphericHouseHDRP.unitypackage
+/Assets/AtmosphericHouse/URP/
+/Assets/AtmosphericHouse/Textures/
 
 # MemoryCaptures can get excessive in size.
 # They also could contain extremely sensitive data
