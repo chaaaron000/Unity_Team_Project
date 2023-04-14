@@ -24,9 +24,10 @@ public class SimpleGetItem : MonoBehaviour
             Debug.LogError("ItemDatabase is not assigned.");
             return;
         }
-
+        Debug.Log(gameObject.name);
+        
         itemDatabase.AddData(gameObject.name);
-        // Debug.Log("AddData를 실행했어요");
+        
         Destroy(gameObject);
     }
 }
