@@ -21,6 +21,11 @@ public class DoorOpenClose : MonoBehaviour
     }
     public DoorType doorType;
 
+    private ItemDatabase itemDatabase;
+
+    public bool doorLocked = true;
+    public GameObject crossline;
+    private CrosslineCollider crosslineCollider;
 
     // Open or close animator state in start depending on selection.
     // Additional object with animator. For example another door when double doors. 
@@ -50,27 +55,56 @@ public class DoorOpenClose : MonoBehaviour
             {
                 hasAdditional = false;
             }
+
+        GameObject playerObject = GameObject.FindGameObjectWithTag("Player");
+        if (playerObject == null)
+        {
+            Debug.LogError("playerObject is not assigned.");
+            return;
+        }
+        itemDatabase = playerObject.GetComponent<ItemDatabase>();
+
+        if (crossline)
+        {
+            crosslineCollider = crossline.GetComponent<CrosslineCollider>();
+        }
+
     }
 
     // Player clicks object. Method called from SimplePlayerUse script.
 
-    void ObjectClicked()
+    public void ObjectClicked()
     {
-        if (!objectOpen)
+        if (doorLocked)
         {
             switch (doorType)
             {
                 case DoorType.CantOpen:
                     Debug.Log("열 수 없는 문입니다.");
                     return;
+
                 case DoorType.KeyDoor:
                     Debug.Log("키로 여는 문입니다.");
+                    if (!CheckForKey())
+                    {
+                        Debug.Log("키가 없습니다.");
+                        return;
+                    }
+
+                    doorLocked = false;
                     break;
+
                 case DoorType.QuizDoor:
                     Debug.Log("퀴즈로 여는 문입니다.");
                     break;
+
                 case DoorType.BasementDoor:
                     Debug.Log("지하실 문입니다.");
+                    if (crosslineCollider.isCrossed)
+                    {
+                        Debug.Log("더 이상 열리지 않습니다.");
+                        return;
+                    }
                     break;
 
                 default:
@@ -135,6 +169,17 @@ public class DoorOpenClose : MonoBehaviour
 
         }
 
+    }
+
+    bool CheckForKey()
+    {
+        Debug.Log(itemDatabase.item);
+        foreach(string obj in itemDatabase.item) {
+            if(obj == "Key") {
+                return true;
+            }
+        }   
+        return false;
     }
 
 }

@@ -232,6 +232,7 @@ GameObject:
   - component: {fileID: 5676996701169286383}
   - component: {fileID: 869152307095256651}
   - component: {fileID: 1730281372}
+  - component: {fileID: 1730281375}
   m_Layer: 2
   m_Name: FPS Controller
   m_TagString: Player
@@ -307,6 +308,20 @@ MonoBehaviour:
   flashlight: {fileID: 6052554741015966178}
   OpenCloseGetItem: 101
   Flashlight: 102
+--- !u!114 &1730281375
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5676996701169286370}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 27661c7a63a74534abfa6c2cf64eaec2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  itemOnOff: {fileID: 0}
+  item: []
 --- !u!1 &6052554741015966178
 GameObject:
   m_ObjectHideFlags: 0
