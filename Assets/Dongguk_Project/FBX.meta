@@ -1,5 +1,9 @@
 fileFormatVersion: 2
+<<<<<<< HEAD:Assets/Dongguk_Project/FBX.meta
 guid: af44b1c3ef1e13f4cb7de5b4951facbf
+=======
+guid: 37120431fa3a2dd42854e68135273ffd
+>>>>>>> bf66993f2446acca90ae620a564a73c141b2cc57:Assets/AtmosphericHouse/Textures/Clean/Bathtub.meta
 folderAsset: yes
 DefaultImporter:
   externalObjects: {}

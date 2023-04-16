@@ -1,6 +1,12 @@
 fileFormatVersion: 2
+<<<<<<< HEAD:Assets/Dongguk_Project/Prefabs/Props/KeyFrames/Prism_Key Variant.prefab.meta
 guid: fd5fd99f027103f41a6938c8a5831321
 PrefabImporter:
+=======
+guid: ad86a67261571f041a14cf717da2757c
+folderAsset: yes
+DefaultImporter:
+>>>>>>> bf66993f2446acca90ae620a564a73c141b2cc57:Assets/AtmosphericHouse/Textures/Clean/Basement_stairs.meta
   externalObjects: {}
   userData: 
   assetBundleName: 
