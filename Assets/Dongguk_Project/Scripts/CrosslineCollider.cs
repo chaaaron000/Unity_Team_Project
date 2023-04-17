@@ -8,7 +8,7 @@ public class CrosslineCollider : MonoBehaviour
     public GameObject doorToInteract;
     private DoorOpenClose doorScript;
 
-    public bool isCrossed = false;
+    bool isCrossed = false;
 
     // Start is called before the first frame update
     void Start()
@@ -53,5 +53,10 @@ public class CrosslineCollider : MonoBehaviour
         {
             return false;
         }
+    }
+
+    public bool CheckIsCrossed()
+    {
+        return isCrossed;
     }
 }
