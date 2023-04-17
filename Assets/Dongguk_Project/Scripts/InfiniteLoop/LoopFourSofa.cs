@@ -17,7 +17,7 @@ public class LoopFourSofa : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            Debug.Log("Player Entered");
+            // Debug.Log("Player Entered");
             anim.Play("Loop4_Sofa_Move");
         }
     }
