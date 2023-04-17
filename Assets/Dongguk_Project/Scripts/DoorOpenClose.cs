@@ -176,6 +176,7 @@ public class DoorOpenClose : MonoBehaviour
         Debug.Log(itemDatabase.item);
         foreach(string obj in itemDatabase.item) {
             if(obj == "Key") {
+                itemDatabase.DeleteData(obj);
                 return true;
             }
         }   
