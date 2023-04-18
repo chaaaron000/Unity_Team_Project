@@ -12,7 +12,7 @@ public class ItemOnOff : MonoBehaviour
     private void Awake()
     {
         canvas = GameObject.FindObjectOfType<Canvas>();
-        inventoryUI = canvas.transform.Find("InventoryUI").gameObject;
+        inventoryUI = canvas.transform.Find("BackgroundPanel/InventoryUI").gameObject;
     }
 
     public void SetItemOn(string gameObjectName)

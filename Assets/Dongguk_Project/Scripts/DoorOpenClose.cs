@@ -100,7 +100,7 @@ public class DoorOpenClose : MonoBehaviour
 
                 case DoorType.BasementDoor:
                     Debug.Log("지하실 문입니다.");
-                    if (crosslineCollider.isCrossed)
+                    if (crosslineCollider.CheckIsCrossed())
                     {
                         Debug.Log("더 이상 열리지 않습니다.");
                         return;
