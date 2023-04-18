@@ -24,6 +24,7 @@ public class ItemDatabase : MonoBehaviour
 
     public void DeleteData(string objectName){
       itemOnOff.SetItemOff(objectName);
+      item.Remove(objectName);
     }
 
     public void Check()
