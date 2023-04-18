@@ -7,11 +7,22 @@ public class LoopSevenChasing : MonoBehaviour
     private Animator anim;
 
     public GameObject ghost;
+    private GhostAnimation ghostAnim;
 
     // Start is called before the first frame update
     void Start()
     {
         anim = GetComponent<Animator>();
+        ghostAnim = ghost.GetComponent<GhostAnimation>();
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+        if (ghostAnim.IsPlayerTouched())
+        {
+            anim.enabled = false;
+        }
     }
 
     private void OnTriggerEnter(Collider other)
