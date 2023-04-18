@@ -23,6 +23,7 @@ public class DoorOpenClose : MonoBehaviour
 
     private ItemDatabase itemDatabase;
 
+    public bool needKey;
     public bool doorLocked = true;
     public GameObject crossline;
     private CrosslineCollider crosslineCollider;
@@ -62,9 +63,10 @@ public class DoorOpenClose : MonoBehaviour
             Debug.LogError("playerObject is not assigned.");
             return;
         }
+
         itemDatabase = playerObject.GetComponent<ItemDatabase>();
 
-        if (crossline)
+        if (doorType == DoorType.BasementDoor)
         {
             crosslineCollider = crossline.GetComponent<CrosslineCollider>();
         }
@@ -85,7 +87,7 @@ public class DoorOpenClose : MonoBehaviour
 
                 case DoorType.KeyDoor:
                     Debug.Log("키로 여는 문입니다.");
-                    if (!CheckForKey())
+                    if (!CheckForItem("Key"))
                     {
                         Debug.Log("키가 없습니다.");
                         return;
@@ -99,12 +101,30 @@ public class DoorOpenClose : MonoBehaviour
                     break;
 
                 case DoorType.BasementDoor:
-                    Debug.Log("지하실 문입니다.");
+                    // Debug.Log("지하실 문입니다.");
+
+                    // Crossline을 한번 지나가면 더 이상 열리지 않게 하는 조건
                     if (crosslineCollider.CheckIsCrossed())
                     {
-                        Debug.Log("더 이상 열리지 않습니다.");
+                        // Debug.Log("더 이상 열리지 않습니다.");
                         return;
                     }
+
+                    // 키가 필요한 문 일때 키를 체크한다
+                    if (needKey)
+                    {
+                        if (CheckForItem("Key"))
+                        {
+                            doorLocked = false;
+                            break;
+                        }
+                        else
+                        {
+                            // Debug.Log("방에서 키를 찾으세요");
+                            return;
+                        }
+                    }
+
                     break;
 
                 default:
@@ -171,11 +191,11 @@ public class DoorOpenClose : MonoBehaviour
 
     }
 
-    bool CheckForKey()
+    bool CheckForItem(string item)
     {
         Debug.Log(itemDatabase.item);
         foreach(string obj in itemDatabase.item) {
-            if(obj == "Key") {
+            if(obj == item) {
                 return true;
             }
         }   

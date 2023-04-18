@@ -25,4 +25,14 @@ public class ItemDatabase : MonoBehaviour
     {
       // Debug.Log("Item count: " + item.Count);
     }
+
+    public bool hasItem(string itemName)
+    {
+      foreach(string obj in item) {
+            if(obj == itemName) {
+                return true;
+            }
+        }   
+        return false;
+    }
 }
