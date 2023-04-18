@@ -94,6 +94,7 @@ public class DoorOpenClose : MonoBehaviour
                     }
 
                     doorLocked = false;
+                    itemDatabase.DeleteData("Key");
                     break;
 
                 case DoorType.QuizDoor:
@@ -116,6 +117,7 @@ public class DoorOpenClose : MonoBehaviour
                         if (CheckForItem("Key"))
                         {
                             doorLocked = false;
+                            itemDatabase.DeleteData("Key");
                             break;
                         }
                         else

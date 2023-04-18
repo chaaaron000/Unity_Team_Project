@@ -27,7 +27,7 @@ public class CustomSimplePlayerUse : MonoBehaviour
 
         if (Input.GetKeyDown(Flashlight)) // Toggle flashlight
         {
-            if (CheckForFlashlight())
+            if (itemDatabase.hasItem("FlashLight"))
             {
                 if (flashlight.activeSelf )
                     flashlight.SetActive(false);
@@ -86,16 +86,6 @@ public class CustomSimplePlayerUse : MonoBehaviour
 
         }
 
-    }
-
-    bool CheckForFlashlight()
-    {
-        foreach(string obj in itemDatabase.item) {
-            if(obj == "FlashLight") {
-                return true;
-            }
-        }   
-        return false;
     }
 
 }
