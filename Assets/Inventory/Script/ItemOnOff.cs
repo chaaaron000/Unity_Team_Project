@@ -50,4 +50,40 @@ public class ItemOnOff : MonoBehaviour
             Debug.LogWarning("Canvas is missing!");
         }
     }   
+
+    public void SetItemOff(string gameObjectName)
+    {
+        if (canvas != null)
+        {
+            Debug.Log("this is SetItemOff");
+            Transform cubeTransform = inventoryUI.transform.Find(gameObjectName);
+            Debug.Log(gameObjectName);
+            if (inventoryUI == null)
+            {
+                Debug.Log("InventoryUI is null");
+                return;
+            }
+
+            if (cubeTransform != null)
+            {
+                cube = cubeTransform.GetComponent<Image>();
+                if (cube != null)
+                {
+                    cube.enabled = false;
+                }
+                else
+                {
+                    Debug.LogWarning("Cube component is missing!");
+                }
+            }
+            else
+            {
+                Debug.LogWarning(gameObjectName + " not found in InventoryUI!");
+            }
+        }
+        else
+        {
+            Debug.LogWarning("Canvas is missing!");
+        }
+    }   
 }
