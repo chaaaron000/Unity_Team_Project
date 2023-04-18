@@ -92,4 +92,9 @@ public class CustomSimplePlayerController : MonoBehaviour
     {
         playerCamera.transform.localPosition = originalPosition;
     }
+
+    public void SwitchCanMove()
+    {
+        canMove = !canMove;
+    }
 }
