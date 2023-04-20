@@ -1,67 +1,90 @@
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class LockController : MonoBehaviour
 {
     public GameObject lockUI;
     public GameObject explainUI;
-    public InputField passwordInput;
-    public string correctPassword = "108";
+    public TMP_InputField passwordInput;
+    public string correctPassword;
+    public GameObject lockObject;
 
     private bool isLocked = true;
-    private bool isShowingPasswordUI = false;
 
     void Start()
     {
         // 초기화
         lockUI.SetActive(false);
         explainUI.SetActive(false);
-        
         passwordInput.gameObject.SetActive(false);
-
         // Enter 키를 눌렀을 때 OnSubmitButtonClicked() 함수 호출
-        passwordInput.onEndEdit.AddListener(delegate { OnSubmitButtonClicked(); });
+       
+    }
+
+    void Update()
+    {
+        // ESC 키를 누르면 자물쇠 UI를 닫고 게임을 재개한다.
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            if (isLocked)
+            {
+                OnCancelButtonClicked();
+            }
+        }
+        
     }
 
     void ObjectClicked()
     {
-            if (isLocked)
-            {
-                ShowLockUI();
-            }
+        if (isLocked)
+        {
+            ShowLockUI();
+        }
     }
 
     void ShowLockUI()
     {
+        Debug.Log(lockObject.name);
         isLocked = true;
         lockUI.SetActive(true);
         explainUI.SetActive(true);
-        Time.timeScale = 0f; // 게임 일시 정지
+        Time.timeScale = 0f;
         passwordInput.gameObject.SetActive(true);
-        passwordInput.ActivateInputField(); // 입력 필드 활성화
+        passwordInput.ActivateInputField();
+        passwordInput.text = "";
+        passwordInput.onSubmit.AddListener(delegate { OnSubmitButtonClicked(); });
     }
 
-    void CheckPassword(string password)
+    void CheckPassword()
     {
+        string password = passwordInput.text;
+        Debug.Log("CheckPassword() " + lockObject.name);
+        Debug.Log("패스워드:" + password);
         if (password == correctPassword)
         {
             isLocked = false;
             lockUI.SetActive(false);
             explainUI.SetActive(false);
             passwordInput.gameObject.SetActive(false);
-            Time.timeScale = 1f; // 게임 재개
-            Destroy(gameObject); // 자물쇠 게임오브젝트 파괴
+            Time.timeScale = 1f;
+            
+            Destroy(lockObject);
         }
         else
         {
             passwordInput.text = "";
-            passwordInput.ActivateInputField(); // 입력 필드 다시 활성화
+            passwordInput.ActivateInputField();
         }
     }
 
     public void OnSubmitButtonClicked()
     {
-        CheckPassword(passwordInput.text);
+        if (passwordInput.gameObject.activeSelf)
+        {
+            Debug.Log("OnSubmitButtonClicked() " + lockObject.name);
+            CheckPassword();
+        }
     }
 
     public void OnCancelButtonClicked()
@@ -69,7 +92,6 @@ public class LockController : MonoBehaviour
         lockUI.SetActive(false);
         explainUI.SetActive(false);
         passwordInput.gameObject.SetActive(false);
-        Time.timeScale = 1f; // 게임 재개
-        isShowingPasswordUI = false;
+        Time.timeScale = 1f;
     }
 }
