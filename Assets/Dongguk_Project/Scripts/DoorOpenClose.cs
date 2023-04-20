@@ -17,7 +17,8 @@ public class DoorOpenClose : MonoBehaviour
         CantOpen,
         KeyDoor,
         QuizDoor,
-        BasementDoor
+        BasementDoor,
+        InfiniteLoopEntrance
     }
     public DoorType doorType;
 
@@ -27,6 +28,10 @@ public class DoorOpenClose : MonoBehaviour
     public bool doorLocked = true;
     public GameObject crossline;
     private CrosslineCollider crosslineCollider;
+
+    KeyFrame sphKeyFrame;
+    KeyFrame primKeyFrame;
+    KeyFrame CubeKeyFrame;
 
     // Open or close animator state in start depending on selection.
     // Additional object with animator. For example another door when double doors. 
@@ -66,9 +71,16 @@ public class DoorOpenClose : MonoBehaviour
 
         itemDatabase = playerObject.GetComponent<ItemDatabase>();
 
-        if (doorType == DoorType.BasementDoor)
+        if (doorType == DoorType.BasementDoor || doorType == DoorType.InfiniteLoopEntrance)
         {
             crosslineCollider = crossline.GetComponent<CrosslineCollider>();
+        }
+
+        if (doorType == DoorType.InfiniteLoopEntrance)
+        {
+            sphKeyFrame = GameObject.Find("Sphere_KeyFrame").GetComponent<KeyFrame>();
+            primKeyFrame = GameObject.Find("Prism_KeyFrame").GetComponent<KeyFrame>();
+            CubeKeyFrame = GameObject.Find("Cube_KeyFrame").GetComponent<KeyFrame>();
         }
 
     }
@@ -128,6 +140,26 @@ public class DoorOpenClose : MonoBehaviour
                     }
 
                     break;
+
+                case DoorType.InfiniteLoopEntrance:
+
+                    if (crosslineCollider.CheckIsCrossed())
+                    {
+                        // Debug.Log("더 이상 열리지 않습니다.");
+                        return;
+                    }
+
+                    if (sphKeyFrame.FilledState() && primKeyFrame.FilledState() && CubeKeyFrame.FilledState())
+                    {
+                        Debug.Log("키를 다 찾았습니다");
+                        break;
+                    }
+                    else 
+                    {
+                        Debug.Log("키가 없노");
+                        return;
+                    }
+
 
                 default:
                     Debug.Log("올바르지 않은 타입입니다.");;

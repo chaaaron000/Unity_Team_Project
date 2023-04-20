@@ -75,6 +75,16 @@ public class CustomSimplePlayerUse : MonoBehaviour
                 hit.collider.gameObject.BroadcastMessage("ObjectClicked");
             }
 
+            if (hit.collider.gameObject.GetComponent<KeyFrame>())
+            {
+                string keyName = hit.collider.gameObject.GetComponent<KeyFrame>().ReturnKeyName();
+                if (itemDatabase.hasItem(keyName))
+                {
+                    hit.collider.gameObject.GetComponent<KeyFrame>().ObjectClicked();
+                    itemDatabase.DeleteData(keyName);
+                }
+            }
+
            // Debug.DrawRay(mainCamera.transform.position, mainCamera.transform.TransformDirection(Vector3.forward) * hit.distance, Color.yellow);
            // Debug.Log("Did Hit");
         }
