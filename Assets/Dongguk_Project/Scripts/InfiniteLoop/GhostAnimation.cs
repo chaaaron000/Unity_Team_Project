@@ -25,6 +25,9 @@ public class GhostAnimation : MonoBehaviour
             // anim.enabled = true;
             anim.Play("attack_3");
             touched = true;
+
+            other.GetComponent<CustomSimplePlayerController>().SetPlayerViewRocation(-90f, 7f);
+            other.GetComponent<CustomSimplePlayerController>().SwitchCanMove(false);
         }
     }
 

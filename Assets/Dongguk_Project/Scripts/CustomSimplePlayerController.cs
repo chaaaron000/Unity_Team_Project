@@ -93,8 +93,21 @@ public class CustomSimplePlayerController : MonoBehaviour
         playerCamera.transform.localPosition = originalPosition;
     }
 
-    public void SwitchCanMove()
+    public void SwitchCanMove(bool state)
     {
-        canMove = !canMove;
+        canMove = state;
+    }
+
+    public IEnumerator EnablePlayerMovementAfterDelay(float delay)
+    {
+        SwitchCanMove(false);
+        yield return new WaitForSeconds(delay);
+        SwitchCanMove(true); // Player 움직임 활성화
+    }
+
+    public void SetPlayerViewRocation(float sideRocation, float upDownRocation)
+    {
+        transform.rotation = Quaternion.Euler(0f, sideRocation, 0f);
+        playerCamera.transform.rotation = Quaternion.Euler(upDownRocation, sideRocation, 0f);
     }
 }

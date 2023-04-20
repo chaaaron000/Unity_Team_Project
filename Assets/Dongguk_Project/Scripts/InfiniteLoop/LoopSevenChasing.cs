@@ -29,8 +29,10 @@ public class LoopSevenChasing : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            // Debug.Log("Player Entered");
             anim.Play("Loop7_Chasing");
+            other.GetComponent<CustomSimplePlayerController>().SetPlayerViewRocation(-90f, 7f);
+            StartCoroutine(other.GetComponent<CustomSimplePlayerController>().EnablePlayerMovementAfterDelay(2f));
+            // Debug.Log("Player Entered");
         }
     }
 }
