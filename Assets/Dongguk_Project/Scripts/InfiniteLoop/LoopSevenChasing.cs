@@ -10,7 +10,7 @@ public class LoopSevenChasing : MonoBehaviour
     private GhostAnimation ghostAnim;
     public GameObject scene;
     //GameObject sceneAnimator;
-    //public GameObject ghost;
+    
    
 
     // Start is called before the first frame update

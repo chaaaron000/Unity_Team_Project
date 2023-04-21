@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GhostAnimation : MonoBehaviour
 {
@@ -8,10 +9,28 @@ public class GhostAnimation : MonoBehaviour
 
     private bool touched = false;
 
+    private float timer = 0.0f;
+    private float waitTime = 2.0f;
+    private bool startTimer = false;
+
+    private string nextScene = "EndScene";
+
     void Start()
     {
         anim = GetComponent<Animator>();
         gameObject.SetActive(false);
+    }
+
+    void Update()
+    {
+        if (startTimer)
+        {
+            timer += Time.deltaTime;
+            if (timer >= waitTime)
+            {
+                SceneManager.LoadScene(nextScene);
+            }
+        }
     }
 
     void OnTriggerEnter(Collider other)
@@ -26,6 +45,7 @@ public class GhostAnimation : MonoBehaviour
             // anim.enabled = true;
             anim.Play("attack_3");
             touched = true;
+            startTimer = true;
 
             other.GetComponent<CustomSimplePlayerController>().SetPlayerViewRocation(-90f, 7f);
             other.GetComponent<CustomSimplePlayerController>().SwitchCanMove(false);

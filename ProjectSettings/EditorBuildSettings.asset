@@ -14,4 +14,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Dongguk_Project/Scenes/House_worn_night 1.unity
     guid: 093a4b6bd71cb484192a498c181e2ca9
+  - enabled: 1
+    path: Assets/Dongguk_Project/Scenes/EndScene.unity
+    guid: 720845b35dcae794f8fb05a3818481a5
   m_configObjects: {}
