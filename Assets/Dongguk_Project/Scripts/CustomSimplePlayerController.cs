@@ -97,6 +97,7 @@ public class CustomSimplePlayerController : MonoBehaviour
     {
         canMove = state;
     }
+    //애니메이션 시작하면 끄고, 애니메이션 시작하면 키기
 
     public IEnumerator EnablePlayerMovementAfterDelay(float delay)
     {

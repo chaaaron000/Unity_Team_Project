@@ -82,6 +82,7 @@ public class WatchController : MonoBehaviour
             //bgs.text = "Check The table";
             Change();
             key.SetActive(true);
+            passwordInput.text = "";
         }
         else
         {
