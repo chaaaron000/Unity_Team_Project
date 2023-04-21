@@ -39,4 +39,6 @@ public class StartNightScene : MonoBehaviour
     public void FirstLineEnd(){
         firstWord.gameObject.SetActive(false);
     }
+
+
 }

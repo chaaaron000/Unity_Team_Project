@@ -11,6 +11,7 @@ public class GhostAnimation : MonoBehaviour
     void Start()
     {
         anim = GetComponent<Animator>();
+        gameObject.SetActive(false);
     }
 
     void OnTriggerEnter(Collider other)
@@ -49,4 +50,15 @@ public class GhostAnimation : MonoBehaviour
         return touched;
     }
 
+    public void WalkingAnimation(){
+        anim.Play("Walking");
+        gameObject.SetActive(true);
+    }
+
+    public void StayAnimation(){
+        anim.Play("Idle_1");
+    }
+    public void ChasingAnimation(){
+        anim.Play("Crawling");
+    }
 }
