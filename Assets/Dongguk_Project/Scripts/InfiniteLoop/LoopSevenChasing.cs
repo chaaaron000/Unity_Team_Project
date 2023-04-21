@@ -8,8 +8,9 @@ public class LoopSevenChasing : MonoBehaviour
 
     public GameObject ghost;
     private GhostAnimation ghostAnim;
+
     public GameObject scene;
-    //GameObject sceneAnimator;
+    private Animator sceneAnimator;
     
    
 
@@ -17,8 +18,9 @@ public class LoopSevenChasing : MonoBehaviour
     void Start()
     {   
         anim = gameObject.GetComponent<Animator>();
+        sceneAnimator = GameObject.Find("Scene").GetComponent<Animator>();
+
         ghostAnim = ghost.GetComponent<GhostAnimation>();
-        ghost.SetActive(false);
         //sceneAnimator = scene.GetComponent<Animator>();
     }
 
@@ -34,41 +36,31 @@ public class LoopSevenChasing : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        ghost.SetActive(true);
         if (other.CompareTag("Player"))
         {
-            anim.Play("Loop7_WalkingDown");
-            
-            ghostAnim.WalkingAnimation();
             //other.GetComponent<CustomSimplePlayerController>().SetPlayerViewRocation(-90f, 7f);
             //StartCoroutine(other.GetComponent<CustomSimplePlayerController>().EnablePlayerMovementAfterDelay(2f));
             // Debug.Log("Player Entered");
 
-            anim=scene.GetComponent<Animator>();
-            anim.Play("Last Scene");
+            anim.Play("Loop7_Chasing");
+            sceneAnimator.Play("Last Scene");
 
-
-            anim = gameObject.GetComponent<Animator>();
-            Debug.Log("LastScene on");
         }
     }
+
+    public void PlayIdleAnim()
+    {
+        ghostAnim.PlayIdleAnim();
+    }
     
-    void OnStayAnimation(){
-        
-        anim.StopPlayback();
-        anim.Play("Loop7_Stay");
-
-        ghostAnim.StayAnimation();
-        Debug.Log("Stay on");
+    public void PlayWalkingAnim()
+    {
+        ghostAnim.PlayWalkingAnim();
     }
 
-    void OnChasingAnimation(){
-        anim.StopPlayback();
-        anim.Play("Loop7_Chasing");
-        ghostAnim.ChasingAnimation();
-        Debug.Log("chasing on");
+    public void PlayCrawlingAnim()
+    {
+        ghostAnim.PlayCrawlingAnim();
     }
-
-
 
 }

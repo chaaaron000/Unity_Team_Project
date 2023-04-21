@@ -37,12 +37,11 @@ public class GhostAnimation : MonoBehaviour
     {
 
         Debug.Log("Player Entered");
-        if (CheckPlayer(other))
+        if (other.CompareTag("Player"))
         {
             // anim.enabled = false;
-            gameObject.GetComponent<Transform>().Rotate(-90.0f, 0, 0);
-            gameObject.GetComponent<Transform>().Translate(0, 0, 1.15f);
-            // anim.enabled = true;
+            // gameObject.GetComponent<Transform>().Rotate(-90.0f, 0, 0);
+            // gameObject.GetComponent<Transform>().Translate(0, 0, 1.15f);
             anim.Play("attack_3");
             touched = true;
             startTimer = true;
@@ -52,33 +51,23 @@ public class GhostAnimation : MonoBehaviour
         }
     }
 
-    bool CheckPlayer(Collider other)
-    {
-        // Debug.Log("Check Player");
-        if (other.CompareTag("Player"))
-        {
-            return true;
-        }
-        else
-        {
-            return false;
-        }
-    }
-
     public bool IsPlayerTouched()
     {
         return touched;
     }
 
-    public void WalkingAnimation(){
-        anim.Play("Walking");
-        gameObject.SetActive(true);
-    }
-
-    public void StayAnimation(){
+    public void PlayIdleAnim()
+    {
         anim.Play("Idle_1");
     }
-    public void ChasingAnimation(){
+    
+    public void PlayWalkingAnim()
+    {
+        anim.Play("Walking");
+    }
+
+    public void PlayCrawlingAnim()
+    {
         anim.Play("Crawling");
     }
 }
