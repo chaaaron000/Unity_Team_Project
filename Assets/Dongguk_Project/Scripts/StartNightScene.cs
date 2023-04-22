@@ -7,6 +7,7 @@ public class StartNightScene : MonoBehaviour
     Animator animator;
     GameObject ladyGhost;
     public GameObject firstWord;
+    AudioSource audioSource;
 
     public void Start()
     {
@@ -19,6 +20,8 @@ public class StartNightScene : MonoBehaviour
 
         animator = gameObject.GetComponent<Animator>();
         animator.Play("First Scene");
+        audioSource = GetComponent<AudioSource>();
+        audioSource.Play();
         /*AnimationEvent animationEvent = new AnimationEvent();
         animationEvent.functionName = "OnAnimationEnd";
         animationEvent.time = animator.GetCurrentAnimatorStateInfo(0).length;
@@ -29,6 +32,7 @@ public class StartNightScene : MonoBehaviour
     {
         animator.enabled = false;
         //ladyGhost.SetActive(false);
+        firstWord.gameObject.SetActive(false);
 
     }
 
