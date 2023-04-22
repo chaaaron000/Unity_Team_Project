@@ -8,13 +8,18 @@ public class StartNightScene : MonoBehaviour
     GameObject ladyGhost;
     public GameObject firstWord;
     AudioSource audioSource;
+    public GameObject youcant;
+    public GameObject howabout;
+    public GameObject run;
 
     public void Start()
     {
         // Canvas 아래의 FirstWord 오브젝트를 찾아 TextMeshProUGUI 컴포넌트 가져오기
         //firstWord = GameObject.Find("Canvas/FirstWord").GetComponent<GameObject>();
         firstWord.gameObject.SetActive(false);
-
+        youcant.gameObject.SetActive(false);
+        howabout.gameObject.SetActive(false);
+        run.gameObject.SetActive(false);
         ladyGhost = GameObject.Find("LadyGhost");
         ladyGhost.SetActive(true);
 
@@ -44,5 +49,32 @@ public class StartNightScene : MonoBehaviour
         firstWord.gameObject.SetActive(false);
     }
 
+    public void youcantStart(){
+        youcant.gameObject.SetActive(true);
+    }
+
+    public void youcantEnd(){
+        youcant.gameObject.SetActive(false);
+    }
+
+    public void howaboutStart(){
+        howabout.gameObject.SetActive(true);
+    }
+
+    public void howaboutEnd(){
+        howabout.gameObject.SetActive(false);
+    }
+
+    public void runStart(){
+        run.gameObject.SetActive(true);
+    }
+
+    public void runStartEnd(){
+        run.gameObject.SetActive(false);
+    }
+
+    public void AnimationEnd(){
+        animator.enabled=false;
+    }
 
 }
