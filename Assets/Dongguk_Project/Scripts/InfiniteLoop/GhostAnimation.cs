@@ -13,10 +13,13 @@ public class GhostAnimation : MonoBehaviour
     private float waitTime = 2.0f;
     private bool startTimer = false;
 
+    
+
     private string nextScene = "EndScene";
 
     void Start()
     {
+        
         anim = GetComponent<Animator>();
         gameObject.SetActive(false);
     }
@@ -63,6 +66,7 @@ public class GhostAnimation : MonoBehaviour
     
     public void PlayWalkingAnim()
     {
+       
         anim.Play("Walking");
     }
 
