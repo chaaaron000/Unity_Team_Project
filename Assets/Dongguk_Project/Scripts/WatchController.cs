@@ -15,12 +15,14 @@ public class WatchController : MonoBehaviour
     public GameObject key;
     public float letterChangeInterval = 100f;
     private Coroutine changeCoroutine;
+    private AudioSource audioSoure;
 
     private bool isLocked = true;
 
     void Start()
 {
     // 초기화
+    audioSoure = GetComponent<AudioSource>();
     key.SetActive(false);
     explainUI.SetActive(false);
     passwordInput.gameObject.SetActive(false);
@@ -80,6 +82,7 @@ public class WatchController : MonoBehaviour
         
             timeText.text = password;
             //bgs.text = "Check The table";
+            audioSoure.Play();
             Change();
             key.SetActive(true);
             passwordInput.text = "";

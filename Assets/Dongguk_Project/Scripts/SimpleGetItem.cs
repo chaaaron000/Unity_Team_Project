@@ -8,6 +8,7 @@ public class SimpleGetItem : MonoBehaviour
 
     void Start()
     {
+        
         GameObject playerObject = GameObject.FindGameObjectWithTag("Player");
         if (playerObject == null)
         {
@@ -26,21 +27,12 @@ public class SimpleGetItem : MonoBehaviour
         }
         Debug.Log(gameObject.name);
         
+        
+        
         itemDatabase.AddData(gameObject.name);
         
         Destroy(gameObject);
+        
     }
 }
 
-
-/*if(this.gameObject.name == "Prism"){
-            itemDatabase = GameObject.Find("Prism").GetComponent<ItemDatabase>();
-        }else if(this.gameObject.name == "Cube"){
-            itemDatabase = GameObject.Find("Cube").GetComponent<ItemDatabase>();
-        }else if(this.gameObject.name == "Sphere"){
-            itemDatabase = GameObject.Find("Sphere").GetComponent<ItemDatabase>();
-        }else if((this.gameObject.name == "FlashLight")){
-            itemDatabase = GameObject.Find("FlashLight").GetComponent<ItemDatabase>();
-        }else{
-            itemDatabase = GameObject.Find("Key").GetComponent<ItemDatabase>();
-        }*/
