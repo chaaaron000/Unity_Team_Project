@@ -68,12 +68,13 @@ public class CustomSimplePlayerUse : MonoBehaviour
             if (hit.collider.gameObject.GetComponent<LockController>())
             {
                 Debug.Log("Object with LockController script found");
+                Debug.Log(hit.collider.gameObject.name);
                 hit.collider.gameObject.BroadcastMessage("ObjectClicked");
             }
             if (hit.collider.gameObject.GetComponent<WatchController>())
             {
-                Debug.Log("Object with LockController script found");
-                hit.collider.gameObject.BroadcastMessage("ObjectClicked");
+                Debug.Log("Object with WatchController script found");
+                hit.collider.gameObject.BroadcastMessage("WatchClicked");
             }
             
             if (hit.collider.gameObject.GetComponent<SimpleGetItem>()){

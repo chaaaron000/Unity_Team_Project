@@ -5,6 +5,7 @@ using UnityEngine;
 public class SimpleGetItem : MonoBehaviour
 {
     private ItemDatabase itemDatabase;
+   
 
     void Start()
     {
@@ -30,6 +31,7 @@ public class SimpleGetItem : MonoBehaviour
         
         
         itemDatabase.AddData(gameObject.name);
+
         
         Destroy(gameObject);
         

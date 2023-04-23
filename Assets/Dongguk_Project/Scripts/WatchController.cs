@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
-using System.Collections;
+//using System.Collections;
 
 public class WatchController : MonoBehaviour
 {
@@ -9,25 +9,24 @@ public class WatchController : MonoBehaviour
     public GameObject explainUI;
     public TMP_InputField passwordInput;
     public string correctPassword;
-    public GameObject lockObject;
+    
     public TextMeshPro timeText;
     public TextMeshPro bgs; // 수정된 부분
     public GameObject key;
-    public float letterChangeInterval = 100f;
-    private Coroutine changeCoroutine;
+    
     private AudioSource audioSoure;
 
     private bool isLocked = true;
 
     void Start()
-{
+    {
     // 초기화
-    audioSoure = GetComponent<AudioSource>();
-    key.SetActive(false);
-    explainUI.SetActive(false);
-    passwordInput.gameObject.SetActive(false);
-    bgs.gameObject.SetActive(true);
-}
+        audioSoure = GetComponent<AudioSource>();
+        key.SetActive(false);
+        explainUI.SetActive(false);
+        passwordInput.gameObject.SetActive(false);
+        bgs.gameObject.SetActive(true);
+    }
 
 
     void Update()
@@ -43,34 +42,34 @@ public class WatchController : MonoBehaviour
         
     }
 
-    void ObjectClicked()
+    void WatchClicked()
     {
         if (isLocked)
         {
+            Debug.Log("WatchClicked");
             ShowLockUI();
         }
     }
 
     void ShowLockUI()
     {
-        Debug.Log(lockObject.name);
-        isLocked = true;
-        
+        Debug.Log("WatchShowLockUI");
         explainUI.SetActive(true);
         Time.timeScale = 0f;
         passwordInput.gameObject.SetActive(true);
         passwordInput.ActivateInputField();
         passwordInput.text = "";
-        passwordInput.onSubmit.AddListener(delegate { OnSubmitButtonClicked(); });
+        passwordInput.onSubmit.AddListener(delegate { this.OnSubmitWatchClicked(); });
     }
 
     void CheckPassword()
     {
         string password = passwordInput.text;
-        Debug.Log("CheckPassword() " + lockObject.name);
-        Debug.Log("패스워드:" + password);
+        
+        Debug.Log("패스워드 clock:" + password);
         if (password == correctPassword)
-        {
+        {   
+            Debug.Log("this is clock CHekckPAss");
             isLocked = false;
         
             explainUI.SetActive(false);
@@ -81,30 +80,32 @@ public class WatchController : MonoBehaviour
             // 정답 입력 후 time 텍스트 업데이트
         
             timeText.text = password;
-            //bgs.text = "Check The table";
+            
             audioSoure.Play();
-            Change();
+            bgs.text = "Check The table";
             key.SetActive(true);
-            passwordInput.text = "";
         }
         else
         {
+            Debug.Log("clock checkpass if false");
             passwordInput.text = "";
-            passwordInput.ActivateInputField();
+            
+            Debug.Log("check");
         }
     }
 
 
-    public void OnSubmitButtonClicked()
+    private void OnSubmitWatchClicked()
     {
+        Debug.Log("WatchOnSubmitBUttonClicked");
         if (passwordInput.gameObject.activeSelf)
         {
-            Debug.Log("OnSubmitButtonClicked() " + lockObject.name);
+            Debug.Log("Watch OnSubmitButtonClicked() ");
             CheckPassword();
         }
     }
 
-    public void OnCancelButtonClicked()
+    private void OnCancelButtonClicked()
     {
         
         explainUI.SetActive(false);
@@ -112,27 +113,4 @@ public class WatchController : MonoBehaviour
         Time.timeScale = 1f;
     }
 
-    public void Change()
-{
-    if (changeCoroutine != null) // 이전에 실행한 코루틴이 있다면 종료
-    {
-        StopCoroutine(changeCoroutine);
-    }
-
-    // 코루틴 실행
-    changeCoroutine = StartCoroutine(ChangeTextCoroutine());
-}
-
-private IEnumerator ChangeTextCoroutine()
-{
-    string originalText = bgs.text; // 원래의 텍스트 저장
-
-    // 글자를 한 글자씩 변환하는 작업
-    for (int i = 0; i < originalText.Length; i++)
-    {
-        string newText = originalText.Substring(0, i + 1);
-        bgs.text = "Check The table";
-        yield return new WaitForSeconds(letterChangeInterval);
-    }
-}
 }

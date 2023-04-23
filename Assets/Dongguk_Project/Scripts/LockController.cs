@@ -9,18 +9,18 @@ public class LockController : MonoBehaviour
     public TMP_InputField passwordInput;
     public string correctPassword;
     public GameObject lockObject;
-    public AudioSource audioSource;
+    public AudioController audioController;
     private bool isLocked = true;
 
     void Start()
     {
         // 초기화
+        audioController = GetComponentInParent<AudioController>();
         lockUI.SetActive(false);
         explainUI.SetActive(false);
         passwordInput.gameObject.SetActive(false);
-        audioSource = GetComponent<AudioSource>();
+        passwordInput.onEndEdit.AddListener(OnSubmitButtonClicked);
         // Enter 키를 눌렀을 때 OnSubmitButtonClicked() 함수 호출
-       
     }
 
     void Update()
@@ -33,7 +33,6 @@ public class LockController : MonoBehaviour
                 OnCancelButtonClicked();
             }
         }
-        
     }
 
     void ObjectClicked()
@@ -46,57 +45,55 @@ public class LockController : MonoBehaviour
 
     void ShowLockUI()
     {
-        Debug.Log(lockObject.name);
         isLocked = true;
         lockUI.SetActive(true);
         explainUI.SetActive(true);
         Time.timeScale = 0f;
         passwordInput.gameObject.SetActive(true);
         passwordInput.ActivateInputField();
-        passwordInput.text = "";
-        passwordInput.onSubmit.AddListener(delegate { OnSubmitButtonClicked(); });
+        //passwordInput.text = "";
+        Debug.Log("--------------------");
+        passwordInput.onSubmit.AddListener(delegate { CheckPassword(); });
     }
 
-   void CheckPassword()
-{
-    string password = passwordInput.text;
-    Debug.Log("CheckPassword() " + lockObject.name);
-    Debug.Log("패스워드:" + password);
-    if (password == correctPassword)
+    void CheckPassword()
     {
-        isLocked = false;
-        lockUI.SetActive(false);
-        explainUI.SetActive(false);
-        passwordInput.gameObject.SetActive(false);
-        Time.timeScale = 1f;
-        
-        // Unlock 사운드 재생
-        Debug.Log("오디오 클립: " + audioSource.clip.name);
-        Debug.Log("Audio Play");
-        audioSource.Play();
-        
-        Destroy(lockObject);
-        password="";
-        passwordInput.text="";
-    }
-    else
-    {
-        passwordInput.text = "";
-        passwordInput.ActivateInputField();
-    }
-}
+        string password = passwordInput.text;
+        Debug.Log(gameObject.name);
+        Debug.Log("패스워드 lock:" + password);
+        if (password == correctPassword)
+        {
+            isLocked = false;
+            lockUI.SetActive(false);
+            explainUI.SetActive(false);
+            passwordInput.gameObject.SetActive(false);
+            Time.timeScale = 1f;
 
+            // Unlock 사운드 재생
 
-    public void OnSubmitButtonClicked()
+            password = "";
+            passwordInput.text = "";
+            audioController.AudioPlay();
+            Destroy(lockObject);
+        }
+        else
+        {
+            passwordInput.text = "";
+            passwordInput.ActivateInputField();
+        }
+    }
+
+    private void OnSubmitButtonClicked(string arg0)
     {
+        Debug.Log("LockOnSubmitBUttonClicked");
         if (passwordInput.gameObject.activeSelf)
         {
-            Debug.Log("OnSubmitButtonClicked() " + lockObject.name);
+            Debug.Log("Lock OnSubmitButtonClicked() ");
             CheckPassword();
         }
     }
 
-    public void OnCancelButtonClicked()
+    private void OnCancelButtonClicked()
     {
         lockUI.SetActive(false);
         explainUI.SetActive(false);
