@@ -12,9 +12,10 @@ public class AudioController : MonoBehaviour
     void Update()
     {
         // Lock 오브젝트가 파괴되면 오디오를 재생합니다.
-        if (gameObject.transform.Find("Lock") == null)
+        if (!GameObject.Find(gameObject.name +"/Lock"))
         {
-            audioSource.Play();
+            audioSource.enabled =true;
+            //audioSource.Play();
         }
     }
 }

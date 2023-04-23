@@ -36,6 +36,7 @@ public class StartNightScene : MonoBehaviour
     public void OnAnimationEnd()
     {
         animator.enabled = false;
+        audioSource.Stop();
         //ladyGhost.SetActive(false);
         firstWord.gameObject.SetActive(false);
 
