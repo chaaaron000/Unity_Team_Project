@@ -156,7 +156,7 @@ public class DoorOpenClose : MonoBehaviour
                     }
                     else 
                     {
-                        Debug.Log("키가 없노");
+                        Debug.Log("키가 없습니다.");
                         return;
                     }
 
